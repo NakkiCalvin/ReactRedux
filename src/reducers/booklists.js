@@ -3,7 +3,7 @@ const initialState = [
 	'FriendPlayList'
 ]; 
 
-export default function trackList(state = initialState, action){
+export default function smthList(state = initialState, action){
     console.log(action);
     if (action.type === 'ADD_PLAYLIST'){
         return state;

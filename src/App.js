@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { getBooks } from './actions/books';
+
 class App extends Component {
-    addTrack(){
-        console.log('addTrack', this.trackInput.value);
-        this.props.onAddTrack(this.trackInput.value);
-        this.trackInput.value = '';
+    addBook(){
+        console.log('addBook', this.bookInput.value);
+        this.props.onAddBook(this.bookInput.value);
+        this.bookInput.value = '';
     }
 
-    findTrack(){
-      console.log('findTrack', this.searchInput.value);  
-      this.props.onFindTrack(this.searchInput.value);
+    findBook(){
+      console.log('findBook', this.searchInput.value);  
+      this.props.onFindBook(this.searchInput.value);
     }
 
     render(){
-        console.log(this.props.tracks);
+        console.log(this.props.books);
         return(
             <div>
                 <div>
-                    <input type="text" ref={(input) => {this.trackInput = input}} />
-                    <button onClick={this.addTrack.bind(this)}>Add Smth</button>
+                    <input type="text" ref={(input) => {this.bookInput = input}} />
+                    <button onClick={this.addBook.bind(this)}>Add Book</button>
                 </div>
                 <div>
                     <input type="text" ref={(input) => {this.searchInput = input}} />
-                    <button onClick={this.findTrack.bind(this)}>Find Smth</button>
+                    <button onClick={this.findBook.bind(this)}>Find Book</button>
                 </div>
+                <div>
+                    <button onClick={this.props.onGetBooks}> Get Books </button>
+                </div>
+
                 <ul>
-                    {this.props.tracks.map((track, index) =>
-                        <li key={index}>{track.name}</li>
+                    {this.props.books.map((book, index) =>
+                        <li key={index}>{book.name}</li>
                     )}
                 </ul>
             </div>
@@ -38,18 +44,21 @@ class App extends Component {
 export default connect(
     state => ({
         //testStore: state.tracks,
-        tracks: state.tracks.filter(track => track.name.includes(state.filterTracks))
+        books: state.books.filter(book => book.name.includes(state.filterBooks))
     }),
     dispatch => ({
-        onAddTrack: (name) => {
+        onAddBook: (name) => {
             const payload = {
                 id: Date.now().toString(),
                 name
             };
-            dispatch({ type: 'ADD_TRACK', payload })
+            dispatch({ type: 'ADD_BOOK', payload })
         },
-        onFindTrack: (name) => {
-            dispatch({type: 'FIND_TRACK', payload: name})
+        onFindBook: (name) => {
+            dispatch({type: 'FIND_BOOK', payload: name})
+        },
+        onGetBooks: () => {
+            dispatch(getBooks());
         }
     })
 )(App);
