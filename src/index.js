@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 
 import App from './App';
 import reducer from './reducers';
-//import './index.css';
+import './index.css';
 
 /* const initialState = {
 	tracks: [
