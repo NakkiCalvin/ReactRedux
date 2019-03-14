@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import { service } from '../services/Userservice';
+
+const host = 'https://localhost:44326';
 
 class RegisterBox extends Component {
-
 
     constructor(props) {
       super(props);
@@ -11,15 +13,15 @@ class RegisterBox extends Component {
       };
     }
 
-    //url = 'https://localhost:44326/Account/Register';
-  
     submitRegister = (e) => {
       e.preventDefault();
       let data = {
           Email: this.state.email,
           Password: this.state.password,
       };
-      fetch('https://localhost:44326/Account/Register', {
+
+
+      fetch(`${host}/Account/Register`, {
           method: 'POST',
           headers: {
               'Accept': 'application/json',

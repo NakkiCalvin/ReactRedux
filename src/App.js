@@ -5,8 +5,7 @@ import { getBooks } from './actions/books';
 
 
 import { Route,NavLink,HashRouter} from "react-router-dom";
-import LoginForm from './pages/Login';
-import RegisterForm from './pages/Register';
+import Account from './pages/Account';
 import Header from './pages/HomeHeader';
 
 class App extends Component {
@@ -24,32 +23,9 @@ class App extends Component {
 
     render(){
         console.log(this.props.books);
-       
-
+    
         return(
-            
-            
-            <Header/>
-
-            // <div>
-            //     <div>
-            //         <input type="text" ref={(input) => {this.bookInput = input}} />
-            //         <button onClick={this.addBook.bind(this)}>Add Book</button>
-            //     </div>
-            //     <div>
-            //         <input type="text" ref={(input) => {this.searchInput = input}} />
-            //         <button onClick={this.findBook.bind(this)}>Find Book</button>
-            //     </div>
-            //     <div>
-            //         <button onClick={this.props.onGetBooks}> Get Books </button>
-            //     </div>
-
-            //     <ul>
-            //         {this.props.books.map((book, index) =>
-            //             <li key={index}>{book.name}</li>
-            //         )}
-            //     </ul>
-            // </div>
+          <Header/>
         )
     }
 }
