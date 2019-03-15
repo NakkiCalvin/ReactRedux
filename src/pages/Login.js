@@ -1,51 +1,31 @@
 import React, {Component} from 'react';
-
-const host = 'https://localhost:44326';
+import { userAction } from '../actions';
 
 class LoginBox extends Component {
 
     constructor(props) {
       super(props);
       this.state = {
-        email : '',
-        password : ''
+        Email : '',
+        Pass : ''
       };
+
+      this.submitLogin = this.submitLogin.bind(this);
+      this.handleUserInput = this.handleUserInput.bind(this);
     }
 
     submitLogin = (e) => {
         e.preventDefault();
-        let data = {
-            Email: this.state.email,
-            Pass: this.state.password,
-        };
-        fetch(`${host}/Account/Login`, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        .then((response) => {
-          if(response.status === 200){
-            alert("Login confirmed successfully");
-            return response.json();
-          }
-          else {
-            alert("SOMETHING WENT WRONG");
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
+        const { Email, Pass } = this.state;
+        const { dispatch } = this.props;
+        if(Email && Pass){
+            dispatch(userAction.login(Email, Pass));
+        }
     }
   
     handleUserInput = (e) => {
 
-        const name = e.target.name;
-      
-        const value = e.target.value;
-      
+        const { name, value } = e.target;
         this.setState({[name]: value});
     }
     
@@ -91,4 +71,12 @@ class LoginBox extends Component {
     }
 }
 
-export default LoginBox;
+const mapStateToProps = state => {
+    return {
+        registerState: state.registration
+    }
+};
+
+export default connect(mapStateToProps)(LoginBox);
+
+//export default LoginBox;

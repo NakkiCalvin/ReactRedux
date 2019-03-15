@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 
 import { getBooks } from './actions/books';
 
-
 import { Route,NavLink,HashRouter} from "react-router-dom";
-import Account from './pages/Account';
 import Header from './pages/HomeHeader';
 
 class App extends Component {
@@ -32,9 +30,7 @@ class App extends Component {
 
 export default connect(
     state => ({
-        //testStore: state.tracks,
         books: state.books.filter(book => book.name.includes(state.filterBooks)),
-        users: state.users 
     }),
     dispatch => ({
         onAddBook: (name) => {

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import { Router, Route, Link } from 'react-router-dom';
 
 import App from './App';
 import reducer from './reducers';
@@ -55,7 +56,7 @@ const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
 	<Provider store={store}>
-	<App />
+		<App />
 	</Provider>,
 	document.getElementById('root')
 );

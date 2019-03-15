@@ -1,57 +1,44 @@
 import React, {Component} from 'react';
-import { service } from '../services/Userservice';
-
-const host = 'https://localhost:44326';
+import { userAction } from '../actions/UserActions';
+import { connect } from 'react-redux';
 
 class RegisterBox extends Component {
 
     constructor(props) {
       super(props);
       this.state = {
-        email: '',
-        password: '',
+          user: {
+            Email: '',
+            Password: ''
+          }
       };
+
+      this.submitRegister = this.submitRegister.bind(this);
+      this.handleUserInput = this.handleUserInput.bind(this);
+    }
+
+    handleUserInput = (e) => {
+        console.log('handleWorking');
+        const { name, value } = e.target;
+        const { user } = this.state;
+        this.setState({ 
+            user: {
+                ...user,
+                [name]: value
+            }
+        });
     }
 
     submitRegister = (e) => {
       e.preventDefault();
-      let data = {
-          Email: this.state.email,
-          Password: this.state.password,
-      };
-
-
-      fetch(`${host}/Account/Register`, {
-          method: 'POST',
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-      })
-      .then((response) => {
-        if(response.status === 200){
-          alert("Registration was confirmed successfully");
-          return response.json();
-        }
-        else {
-          alert("SOMETHING WENT WRONG");
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+      const { user } = this.state;
+     const {dispatch} = this.props;
+            if(user.Email && user.Password){
+               dispatch(userAction.register(user));
+            } 
     }
 
-    handleUserInput = (e) => {
-
-      const name = e.target.name;
-    
-      const value = e.target.value;
-    
-      this.setState({[name]: value});
-    
-    }
+   
   
     render() {
       return (
@@ -74,7 +61,12 @@ class RegisterBox extends Component {
   
             <div className="input-group">
               <label htmlFor="email">Email</label>
-              <input onChange={this.handleUserInput} type="text" name="email" className="login-input" placeholder="Email"/>
+              <input 
+              onChange={this.handleUserInput} 
+              type="text" 
+              name="Email" 
+              className="login-input" 
+              placeholder="Email"/>
             </div>
   
             <div className="input-group">
@@ -82,7 +74,7 @@ class RegisterBox extends Component {
               <input
                 onChange={this.handleUserInput}
                 type="password"
-                name="password"
+                name="Password"
                 className="login-input"
                 placeholder="Password"/>
             </div>
@@ -97,5 +89,12 @@ class RegisterBox extends Component {
     }
   }
 
+const mapStateToProps = state => {
+    return {
+        registerState: state.registration
+    }
+};
 
-export default RegisterBox;
+export default connect(mapStateToProps)(RegisterBox);
+
+//export default RegisterBox;

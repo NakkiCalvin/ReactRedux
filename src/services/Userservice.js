@@ -23,6 +23,19 @@ function login(email, password){
       });
 }
 
+function register(user){
+    const requestOption = {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify(user)
+    }
+    return fetch(`${host}/Account/Register`, requestOption).then(handleResponse);
+}
+
+function logout(){
+    return fetch(`${host}/Account/LogOut`).then(handleResponse);  
+}
+
 function handleResponse(response){
     return response.text().then(text => {
       const data = text && JSON.parse(text);
@@ -35,10 +48,10 @@ function handleResponse(response){
           const error = (data && data.message) || response.statusText;
           return Promise.reject(error);
       }
+
+      return data;
       
-     
-      
-    })
+    });
 }
 
 
