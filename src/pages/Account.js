@@ -1,6 +1,19 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 
 class AccountPage extends Component {
+
+    addBook(){
+        console.log('addBook', this.bookInput.value);
+        this.props.onAddBook(this.bookInput.value);
+        this.bookInput.value = '';
+    }
+    
+    findBook(){
+        console.log('findBook', this.searchInput.value);  
+        this.props.onFindBook(this.searchInput.value);
+    }
+
 
   render() {
     return(
@@ -17,13 +30,18 @@ class AccountPage extends Component {
                  <button onClick={this.props.onGetBooks}> Get Books </button>
             </div>
                  <ul>
-                     {this.props.books.map((book, index) =>
-                         <li key={index}>{book.name}</li>
-                     )}
+                     
                  </ul>
              </div>
     );
   }
 }
 
-export default AccountPage;
+
+const mapStateToProps = state => {
+    return {
+        bookState: state.books
+    }
+};
+
+export default connect(mapStateToProps)(AccountPage);

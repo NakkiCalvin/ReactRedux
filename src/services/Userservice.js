@@ -20,6 +20,7 @@ function login(email, password){
       .then(handleResponse)
       .then(user => {
         localStorage.setItem('user', JSON.stringify(user));
+        return user;
       });
 }
 

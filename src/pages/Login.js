@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import { userAction } from '../actions';
+import { connect } from 'react-redux';
+import { history } from '../Routehistory';
+
 
 class LoginBox extends Component {
 
@@ -18,8 +21,19 @@ class LoginBox extends Component {
         e.preventDefault();
         const { Email, Pass } = this.state;
         const { dispatch } = this.props;
+        
         if(Email && Pass){
+            
             dispatch(userAction.login(Email, Pass));
+            
+            //if(this.props.loginState.authenticated && this.props.loginState.user.access_token){
+            //history.push('/#/profile');
+            //window.location.reload();
+            //}
+            // else{
+            // history.push('/#/');
+            // window.location.reload();
+            // }
         }
     }
   
@@ -43,7 +57,7 @@ class LoginBox extends Component {
               <input
                 onChange={this.handleUserInput}
                 type="text"
-                name="email"
+                name="Email"
                 className="login-input"
                 placeholder="Email"/>
             </div>
@@ -53,7 +67,7 @@ class LoginBox extends Component {
               <input
                 onChange={this.handleUserInput}
                 type="password"
-                name="password"
+                name="Pass"
                 className="login-input"
                 placeholder="Password"/>
             </div>
@@ -62,18 +76,18 @@ class LoginBox extends Component {
               type="button"
               className="login-btn"
             //  name = "username"
-              onClick={this
-              .submitLogin}>Login</button>
+              onClick={this.submitLogin}>Login</button>
           </div>
         </div>
         </form>
+        
       );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        registerState: state.registration
+        loginState: state.login
     }
 };
 
