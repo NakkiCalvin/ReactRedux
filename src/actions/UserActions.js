@@ -49,6 +49,9 @@ function register(user){
 }
 
 function logout(){
-    userService.logout();
-    return {type: userConstants.LOGOUT };
+    return dispatch => {
+        dispatch(request());
+        userService.logout();
+      }
+      function request() { return { type: userConstants.LOGOUT }};
 }

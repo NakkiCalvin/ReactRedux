@@ -1,15 +1,22 @@
-const initialState =  [ ];
+import {bookConstants} from '../constants/bookConst';
 
-export default function bookList(state = initialState, action){
-    console.log(action);
-    if(action.type === 'ADD_BOOK'){
-        return [
+export default function books(state = [], action){
+    
+    switch (action.type) {
+        case bookConstants.CREATE_REQUEST:
+          return {};
+        case bookConstants.CREATE_SUCCESS:
+          return {
             ...state,
-            action.payload
-        ];
-    }
-    else if (action.type === 'FETCH_BOOKS_SUCCESS'){
-        return action.payload;
-    }
-    return state;
+            book: action.payload
+          };
+        case bookConstants.CREATE_FAILURE:
+          return {
+            error: action.error
+          };
+        case bookConstants.FIND_FETCH:
+          return action.payload
+        default:
+          return state;
+      }
 }

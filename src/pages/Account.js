@@ -1,38 +1,39 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import BookForm from './BookForm';
+import { userAction } from '../actions/UserActions';
+import {
+    Route,
+    NavLink,
+    HashRouter
+  } from "react-router-dom";
 
 class AccountPage extends Component {
-
-    addBook(){
-        console.log('addBook', this.bookInput.value);
-        this.props.onAddBook(this.bookInput.value);
-        this.bookInput.value = '';
-    }
     
-    findBook(){
-        console.log('findBook', this.searchInput.value);  
-        this.props.onFindBook(this.searchInput.value);
+    constructor(props){
+        super(props);
+        this.onLogoutClick = this.onLogoutClick.bind(this);
+      }
+
+      onLogoutClick(e){
+        e.preventDefault();
+        const {dispatch} = this.props;
+        dispatch(userAction.logout());
+      }
+
+    render() {
+    const Authentication = () => {
+        return(
+            <li><NavLink to="/" onClick={this.onLogoutClick}>Logout</NavLink></li>
+        )
     }
 
-
-  render() {
     return(
         <div>
-            <div>
-                <input type="text" ref={(input) => {this.bookInput = input}} />
-                <button onClick={this.addBook.bind(this)}>Add Book</button> 
-            </div>
-            <div>
-                 <input type="text" ref={(input) => {this.searchInput = input}} />
-                 <button onClick={this.findBook.bind(this)}>Find Book</button>
-            </div>
-            <div>
-                 <button onClick={this.props.onGetBooks}> Get Books </button>
-            </div>
-                 <ul>
-                     
-                 </ul>
-             </div>
+            <Authentication/>
+            
+            <BookForm />
+        </div>
     );
   }
 }
@@ -40,7 +41,7 @@ class AccountPage extends Component {
 
 const mapStateToProps = state => {
     return {
-        bookState: state.books
+        userState: state.login
     }
 };
 

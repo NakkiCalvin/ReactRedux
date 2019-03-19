@@ -1,5 +1,3 @@
-
-
 const host = 'https://localhost:44326';
 
 export const userService = {
@@ -34,6 +32,7 @@ function register(user){
 }
 
 function logout(){
+    localStorage.removeItem('user');
     return fetch(`${host}/Account/LogOut`).then(handleResponse);  
 }
 

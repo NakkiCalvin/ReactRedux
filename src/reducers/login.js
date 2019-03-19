@@ -1,6 +1,6 @@
 import { userConstants } from '../constants';
 
-console.log(localStorage.getItem('user'));
+
 
 
 //let user = JSON.stringify(localStorage.getItem("user"));

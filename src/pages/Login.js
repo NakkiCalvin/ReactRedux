@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { userAction } from '../actions';
 import { connect } from 'react-redux';
-import { history } from '../Routehistory';
+import { history } from '../Routehistory/histroy';
 
 
 class LoginBox extends Component {
@@ -26,6 +26,8 @@ class LoginBox extends Component {
             
             dispatch(userAction.login(Email, Pass));
             
+            //history.push('/#/profile');
+            //window.location.reload();
             //if(this.props.loginState.authenticated && this.props.loginState.user.access_token){
             //history.push('/#/profile');
             //window.location.reload();
