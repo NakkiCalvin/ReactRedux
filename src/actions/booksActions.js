@@ -1,5 +1,4 @@
 import { bookConstants } from '../constants/bookConst';
-import { history } from '../Routehistory';
 import { bookService } from '../services';
 
 export const bookActions = {
@@ -10,7 +9,7 @@ export const bookActions = {
 function create(book) {
     return dispatch => {
       dispatch(request({ book }));
-  
+      
       bookService.create(book)
         .then(
           newBook => {
@@ -45,7 +44,7 @@ function getAll() {
   }
 
 
-getBooks = (book) => dispatch => {
-        console.log('I got books');
-        dispatch({type: bookConstants.FIND_FETCH, book })
-}
+// getBooks = (book) => dispatch => {
+//         console.log('I got books');
+//         dispatch({type: bookConstants.FIND_FETCH, book })
+// }

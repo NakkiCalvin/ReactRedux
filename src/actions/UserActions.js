@@ -1,14 +1,11 @@
 import { userService } from '../services';
 import { userConstants } from '../constants';
 
-
-
 export const userAction = {
     login,
     register,
     logout
 }
-
 
 function login(username, password) {
     return dispatch => {
@@ -22,7 +19,7 @@ function login(username, password) {
             error => {
                 dispatch(failure(error));
             });
-    }
+    };
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
@@ -41,7 +38,7 @@ function register(user){
                 error => {
                     dispatch(failure(error));
                 });
-    }
+    };
     
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }

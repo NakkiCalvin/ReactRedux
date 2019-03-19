@@ -1,36 +1,38 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bookActions } from '../actions/booksActions';
 
 class BookForm extends Component {
 
-    addBook(){
-        console.log('addBook', this.bookInput.value);
-        this.props.onAddBook(this.bookInput.value);
-        this.bookInput.value = '';
-    }
-    
-    findBook(){
-        console.log('findBook', this.searchInput.value);  
-        this.props.onFindBook(this.searchInput.value);
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const title = this.bookTitle.value;
+        const content = this.bookContent.value;
+        const {dispatch} = this.props;
+        const data = {
+            title,
+            content
+        }
+        dispatch(bookActions.create(data));
+        
+        this.bookTitle.value = '';
+        this.bookContent.value = '';
+        
     }
 
 
   render() {
     return(
-        <div>
-            <div>
-                <input type="text" ref={(input) => {this.bookInput = input}} />
-                <button onClick={this.addBook.bind(this)}>Add Book</button> 
-            </div>
-            <div>
+        <form onSubmit={this.handleSubmit}>
+                <input type="text" ref={(input) => {this.bookTitle = input}} />
+                <input type="text" ref={(input) => {this.bookContent = input}} />
+            {/* <div>
                  <input type="text" ref={(input) => {this.searchInput = input}} />
                  <button onClick={this.findBook.bind(this)}>Find Book</button>
-            </div>
-            <div>
-                 <button onClick={this.props.onGetBooks}> Get Books </button>
-            </div>
-            {this.props.bookState.map((book, index) => <li key={index}>{book}</li>)}
-            </div>
+            </div> */}
+                 <button> Create book </button>
+            {/* {this.props.bookState.map((book, index) => <li key={index}>{book}</li>)} */}
+        </form>
     );
   }
 }

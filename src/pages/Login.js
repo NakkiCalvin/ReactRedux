@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { userAction } from '../actions';
+import { userAction } from '../actions/UserActions';
 import { connect } from 'react-redux';
-import { history } from '../Routehistory/histroy';
 
 
 class LoginBox extends Component {

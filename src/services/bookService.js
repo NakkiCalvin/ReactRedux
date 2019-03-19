@@ -1,4 +1,6 @@
+import {authorizeHeader} from '../Manager/headerAuthorize';
 const host = 'https://localhost:44326';
+
 
 export const bookService = {
     create,
@@ -9,7 +11,8 @@ export const bookService = {
 function create(book) {
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json', 
+                   'Access-Control-Allow-Origin' : '*'},
         body: JSON.stringify(book)
     };
     return fetch(`${host}/Books/Create`,requestOptions).then(handleResponse);
@@ -27,7 +30,7 @@ function create(book) {
   function getAll(){
     const requestOptions = {
       method: 'GET',
-      //headers: authHeader()
+      headers: authorizeHeader()
     };
     return fetch(`${host}/Books/GetAll`, requestOptions).then(handleResponse);
   }

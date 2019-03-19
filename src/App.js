@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import { Redirect, Router, Route, Switch, NavLink, HashRouter} from "react-router-dom";
+import { Redirect, Route, HashRouter} from "react-router-dom";
 import { PrivateRoute } from './Router/Routes';
 import { AnonumousRoute } from './Router/Routes';
 
@@ -24,8 +24,9 @@ class App extends Component {
             <PrivateRoute path="/profile" component={AccountPage}/>
             <AnonumousRoute exact path="/" component={Header}/>
             <Route path='/404' component={My404Component} />
-            <Redirect from='*' to='/404' />
-            <Redirect form='http://localhost:3000' to='/' />
+            {/* if(this.props.loginState.authenticated){<Redirect from='*' to='/404' />}
+            else
+            <Redirect form='http://localhost:3000' to='/' /> */}
           </div>
         </div>
       </HashRouter>

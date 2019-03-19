@@ -8,7 +8,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 
 const initialState = user ? { authenticated: true, user } : { authenticated: false };
 
-let initialAction = (user === null) ? userConstants.LOGIN_FAILURE  : userConstants.LOGIN_SUCCESS ;
+//let initialAction = (user === null) ? userConstants.LOGIN_FAILURE  : userConstants.LOGIN_SUCCESS ;
 
 export function login(state = initialState, action) {
   switch (action.type) {
