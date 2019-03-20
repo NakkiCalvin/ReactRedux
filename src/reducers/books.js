@@ -4,12 +4,12 @@ export default function books(state = [], action){
     
     switch (action.type) {
         case bookConstants.CREATE_REQUEST:
-          return {};
+          return [...state];
         case bookConstants.CREATE_SUCCESS:
-          return {
+          return [
             ...state,
-            book: action.payload
-          };
+            action.payload
+          ];
         case bookConstants.CREATE_FAILURE:
           return {
             error: action.error
