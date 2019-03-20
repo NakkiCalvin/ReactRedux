@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 
-import { Redirect, Route, HashRouter} from "react-router-dom";
+import { Redirect, Route, HashRouter, Router} from "react-router-dom";
 import { PrivateRoute } from './Router/Routes';
 import { AnonumousRoute } from './Router/Routes';
 
@@ -10,6 +10,11 @@ import Header from './pages/HomeHeader';
 import AccountPage from './pages/Account'; 
 import My404Component from './pages/404page';
 
+const NoMatch = ({ location }) => (
+    <div>
+      <h3>No match for <code>{location.pathname}</code></h3>
+    </div>
+  )
 class App extends Component {
 
     render(){
@@ -24,9 +29,7 @@ class App extends Component {
             <PrivateRoute path="/profile" component={AccountPage}/>
             <AnonumousRoute exact path="/" component={Header}/>
             <Route path='/404' component={My404Component} />
-            {/* if(this.props.loginState.authenticated){<Redirect from='*' to='/404' />}
-            else
-            <Redirect form='http://localhost:3000' to='/' /> */}
+            <Route component={NoMatch} />
           </div>
         </div>
       </HashRouter>

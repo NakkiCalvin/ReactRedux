@@ -6,12 +6,12 @@ class BookForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const title = this.bookTitle.value;
-        const content = this.bookContent.value;
+        const Title = this.bookTitle.value;
+        const Content = this.bookContent.value;
         const {dispatch} = this.props;
         const data = {
-            title,
-            content
+            Title,
+            Content
         }
         dispatch(bookActions.create(data));
         

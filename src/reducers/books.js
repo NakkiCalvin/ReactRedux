@@ -14,6 +14,17 @@ export default function books(state = [], action){
           return {
             error: action.error
           };
+        case bookConstants.GETALL_REQUEST:
+          return {};
+        case bookConstants.GETALL_SUCCESS:
+          return {
+              ...state,
+              books: action.payload
+          };
+        case bookConstants.GETALL_FAILURE:
+          return {
+              error: action.payload
+          }
         case bookConstants.FIND_FETCH:
           return action.payload
         default:

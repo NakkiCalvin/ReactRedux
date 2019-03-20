@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import BookForm from './BookForm';
 import { userAction } from '../actions/UserActions';
+import { BookList } from './BookList';
 import {
     NavLink
   } from "react-router-dom";
@@ -32,6 +33,8 @@ class AccountPage extends Component {
             <Authentication/>
             
             <BookForm />
+
+           
         </div>
     );
   }

@@ -9,13 +9,19 @@ export const bookService = {
 }
 
 function create(book) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 
-                   'Access-Control-Allow-Origin' : '*'},
-        body: JSON.stringify(book)
-    };
-    return fetch(`${host}/Books/Create`,requestOptions).then(handleResponse);
+    let user = JSON.parse(localStorage.getItem('user'));
+    if(user){
+        var token = user.access_token;
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 
+                       'Access-Control-Allow-Origin': '*',
+                       'Authorization': 'Bearer ' + token },
+            body: JSON.stringify(book)
+        };
+
+        return fetch(`${host}/Books/Create`,requestOptions).then(handleResponse);
+    }
   }
   
   function deleteBook(id) {
