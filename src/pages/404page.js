@@ -12,5 +12,4 @@ class My404Component extends Component {
     }
 }
 
-
 export default connect()(My404Component);

@@ -48,16 +48,6 @@ class RegisterBox extends Component {
           </div>
           <div className="box">
   
-            {/* <div className="input-group">
-              <label htmlFor="username">Username</label>
-              <input
-               
-                type="text"
-                name="username"
-                className="login-input"
-                placeholder="Username"/>
-            </div> */}
-  
             <div className="input-group">
               <label htmlFor="email">Email</label>
               <input 
@@ -95,5 +85,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(RegisterBox);
-
-//export default RegisterBox;

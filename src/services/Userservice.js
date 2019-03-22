@@ -6,7 +6,6 @@ export const userService = {
       logout
 }
 
-
 function login(email, password){
     const requestOption = {
       method: 'POST',

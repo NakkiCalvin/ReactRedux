@@ -1,8 +1,4 @@
 import {bookConstants} from '../constants/bookConst';
-import {bookService} from '../services/bookService';
-
-//let userBooks = bookService.getAll();
-//let initialState = (userBooks === null) ? [] : userBooks;
 
 export default function books(state = [], action){
     

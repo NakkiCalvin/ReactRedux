@@ -1,5 +1,3 @@
-import {authorizeHeader} from '../Manager/headerAuthorize';
-import {bookConstants} from '../constants/bookConst';
 const host = 'https://localhost:44326';
 
 export const bookService = {
@@ -42,16 +40,21 @@ function create(book) {
         }
     }
 
-    function update(data) {
-        return dispatch => {
-          bookService.update(data)
-            .then(
-              updatedBook => {
-                dispatch(success(updatedBook));
-              }
-            )
+    function update(book) {
+        var user = JSON.parse(localStorage.getItem('user'));
+        if (user) {
+        var token = user.access_token;
+        const requestOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify(book)
+        };
+        return fetch(`${host}/Books/Update`,requestOptions).then(handleResponse);
         }
-        function success(updatedBook) { return { type: bookConstants.EDIT_SUCCESS, updatedBook } }
       }
   
   function getAll(){

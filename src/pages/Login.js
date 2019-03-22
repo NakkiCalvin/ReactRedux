@@ -82,5 +82,3 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps)(LoginBox);
-
-//export default LoginBox;

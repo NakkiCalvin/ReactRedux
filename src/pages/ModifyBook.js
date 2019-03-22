@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {bookActions} from '../actions';
 
-class ModifyBook extends Comment {
+class ModifyBook extends Component {
     
     handleEdit = (e) => {
         e.preventDefault();
@@ -14,10 +14,10 @@ class ModifyBook extends Comment {
           title,
           content
         }
-        this.props.dispatch(bookActions.update(data))
-      }
+    this.props.dispatch(bookActions.update(data))
+    }
 
-      render() {
+    render() {
       return (
       <div onSubmit={this.handleEdit}>
         <form>
@@ -29,7 +29,7 @@ class ModifyBook extends Comment {
         </form>
       </div>
       );
-      }
-      }
+    }
+}
       
-      export default connect()(ModifyBook);
+export default connect()(ModifyBook);

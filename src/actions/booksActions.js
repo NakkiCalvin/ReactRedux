@@ -38,7 +38,6 @@ function getAll() {
             dispatch(success(books));
           },
           error => {
-              console.log("sdsd22222")
             dispatch(failure(error));
           }
         )
@@ -85,9 +84,3 @@ function update(data) {
       function failure(error) { return { type: bookConstants.DELETE_FAILURE, error } }
     }
   }
-
-
-// getBooks = (book) => dispatch => {
-//         console.log('I got books');
-//         dispatch({type: bookConstants.FIND_FETCH, book })
-// }

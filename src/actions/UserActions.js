@@ -14,7 +14,6 @@ function login(username, password) {
         userService.login(username, password)
             .then(user => {
                 dispatch(success(user));
-                //console.log(this.props.authenticated);
             },
             error => {
                 dispatch(failure(error));

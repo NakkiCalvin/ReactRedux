@@ -46,8 +46,6 @@ class Header extends Component {
     showRegisterBox() {
         this.setState({isRegisterOpen: true, isLoginOpen: false});
     }
-  }
+}
 
-  
-
-  export default Header;
+export default Header;

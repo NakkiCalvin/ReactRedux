@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import BookForm from './BookForm';
 import { userAction } from '../actions/UserActions';
-import { BookList } from './BookList';
+import BookList from './BookList';
 import {
     NavLink
   } from "react-router-dom";
@@ -30,17 +30,14 @@ class AccountPage extends Component {
     return(
         <div>
             <h1>{this.props.userPageState.user.userEmail}</h1>
-            
             <Authentication/>
-            
             <BookForm />
-
+            <BookList/>
            
         </div>
     );
   }
 }
-
 
 const mapStateToProps = state => {
     return {
