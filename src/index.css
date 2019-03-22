@@ -12,8 +12,12 @@ body,
 
 }
 
-
-
+.heading1 {
+    border-bottom: 1px solid #aaa;
+}
+.blockfloating {
+    display: block;
+}
 
 .root-container {
 

@@ -24,17 +24,7 @@ class LoginBox extends Component {
         if(Email && Pass){
             
             dispatch(userAction.login(Email, Pass));
-            
-            //history.push('/#/profile');
-            //window.location.reload();
-            //if(this.props.loginState.authenticated && this.props.loginState.user.access_token){
-            //history.push('/#/profile');
-            //window.location.reload();
-            //}
-            // else{
-            // history.push('/#/');
-            // window.location.reload();
-            // }
+           
         }
     }
   
@@ -76,7 +66,6 @@ class LoginBox extends Component {
             <button
               type="button"
               className="login-btn"
-            //  name = "username"
               onClick={this.submitLogin}>Login</button>
           </div>
         </div>

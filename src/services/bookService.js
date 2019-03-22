@@ -1,11 +1,12 @@
 import {authorizeHeader} from '../Manager/headerAuthorize';
+import {bookConstants} from '../constants/bookConst';
 const host = 'https://localhost:44326';
-
 
 export const bookService = {
     create,
     getAll,
-    deleteBook
+    deleteBook,
+    update,
 }
 
 function create(book) {
@@ -25,21 +26,49 @@ function create(book) {
   }
   
   function deleteBook(id) {
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user){
+        var token = user.access_token;
+    
     const requestOptions = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + token
+                },
         body: JSON.stringify(id)
     };
-    return fetch(`${host}/Books/Delete`,requestOptions).then(handleResponse);
-  }
+    return fetch(`${host}/Books/Delete/${id}`,requestOptions).then(handleResponse);
+        }
+    }
+
+    function update(data) {
+        return dispatch => {
+          bookService.update(data)
+            .then(
+              updatedBook => {
+                dispatch(success(updatedBook));
+              }
+            )
+        }
+        function success(updatedBook) { return { type: bookConstants.EDIT_SUCCESS, updatedBook } }
+      }
   
   function getAll(){
+    var user = JSON.parse(localStorage.getItem('user'));
+    if(user){
+        var token = user.access_token;
     const requestOptions = {
       method: 'GET',
-      headers: authorizeHeader()
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token
+      }
     };
     return fetch(`${host}/Books/GetAll`, requestOptions).then(handleResponse);
-  }
+    }
+}
   
   function handleResponse(response) {
       return response.text().then(text => {

@@ -18,7 +18,6 @@ class RegisterBox extends Component {
     }
 
     handleUserInput = (e) => {
-        console.log('handleWorking');
         const { name, value } = e.target;
         const { user } = this.state;
         this.setState({ 

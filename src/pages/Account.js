@@ -30,6 +30,7 @@ class AccountPage extends Component {
     return(
         <div>
             <h1>{this.props.userPageState.user.userEmail}</h1>
+            
             <Authentication/>
             
             <BookForm />

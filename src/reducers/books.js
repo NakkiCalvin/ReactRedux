@@ -1,4 +1,8 @@
 import {bookConstants} from '../constants/bookConst';
+import {bookService} from '../services/bookService';
+
+//let userBooks = bookService.getAll();
+//let initialState = (userBooks === null) ? [] : userBooks;
 
 export default function books(state = [], action){
     
@@ -8,23 +12,46 @@ export default function books(state = [], action){
         case bookConstants.CREATE_SUCCESS:
           return [
             ...state,
-            action.payload
+            action.newBook
           ];
         case bookConstants.CREATE_FAILURE:
-          return {
-            error: action.error
-          };
+          return [
+             (action.error)
+          ];
         case bookConstants.GETALL_REQUEST:
-          return {};
+          return [...state];
         case bookConstants.GETALL_SUCCESS:
-          return {
-              ...state,
-              books: action.payload
-          };
+        console.log(...state.concat(action.books));
+          return [...state.concat(action.books)];
         case bookConstants.GETALL_FAILURE:
-          return {
-              error: action.payload
-          }
+          return [
+              (action.payload)
+          ];
+        case bookConstants.DELETE_REQUEST:
+          return [...state];
+        case bookConstants.DELETE_SUCCESS:
+          return [
+              ...state.filter((book => book.bookId !== action.id))
+          ];
+        case bookConstants.DELETE_FAILURE:
+          return [(action.error)];
+        case bookConstants.EDIT_REQUEST:
+          return state.map((book) => book.bookId === action.id ? { ...book, modify:!book.modify} : book);
+        case bookConstants.EDIT_SUCCESS:
+          return state.map((book) => {
+              if(book.bookId === action.updatedBook.bookId){
+                return {
+                    ...book,
+                    title: action.updatedBook.title,
+                    content:action.updatedBook.content,
+                    modify: !book.modify
+                }
+              } else return book;
+          })
+        case bookConstants.EDIT_FAILURE:
+          return [
+              (action.error)
+          ];
         case bookConstants.FIND_FETCH:
           return action.payload
         default:

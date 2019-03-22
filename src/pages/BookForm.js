@@ -1,20 +1,25 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bookActions } from '../actions/booksActions';
+import BookList from './BookList';
 
 class BookForm extends Component {
 
+    componentWillMount(){
+        this.props.dispatch(bookActions.getAll())
+    }
     handleSubmit = (e) => {
         e.preventDefault();
-        const Title = this.bookTitle.value;
-        const Content = this.bookContent.value;
+        const title = this.bookTitle.value;
+        const content = this.bookContent.value;
         const {dispatch} = this.props;
         const data = {
-            Title,
-            Content
+            title,
+            content,
+            modify: false
         }
+
         dispatch(bookActions.create(data));
-        
         this.bookTitle.value = '';
         this.bookContent.value = '';
         
@@ -23,16 +28,19 @@ class BookForm extends Component {
 
   render() {
     return(
+        
+        <div>
         <form onSubmit={this.handleSubmit}>
-                <input type="text" ref={(input) => {this.bookTitle = input}} />
-                <input type="text" ref={(input) => {this.bookContent = input}} />
+                <input required type="text" ref={(input) => {this.bookTitle = input}} />
+                <textarea className="blockfloating" required rows="5" type="text" ref={(input) => {this.bookContent = input}} cols="28" />
             {/* <div>
                  <input type="text" ref={(input) => {this.searchInput = input}} />
                  <button onClick={this.findBook.bind(this)}>Find Book</button>
             </div> */}
                  <button> Create book </button>
-            {/* {this.props.bookState.map((book, index) => <li key={index}>{book}</li>)} */}
         </form>
+         <BookList/>
+         </div>
     );
   }
 }
