@@ -33,7 +33,6 @@ class AccountPage extends Component {
             <Authentication/>
             <BookForm />
             <BookList/>
-           
         </div>
     );
   }

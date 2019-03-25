@@ -15,7 +15,7 @@ export default function books(state = [], action){
              (action.error)
           ];
         case bookConstants.GETALL_REQUEST:
-          return [...state];
+          return [];
         case bookConstants.GETALL_SUCCESS:
         console.log(...state.concat(action.books));
           return [...state.concat(action.books)];

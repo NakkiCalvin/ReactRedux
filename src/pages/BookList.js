@@ -16,7 +16,6 @@ class BookList extends Component {
     <h1>Your Books</h1>
     {this.props.bookListState.map((book, index) => 
     <div key={index} className='heading1'>
-
         {book.modify ?
         <ModifyBook key={book.bookId} book={book}/> :
         <Book key={book.bookId} book={book}/>

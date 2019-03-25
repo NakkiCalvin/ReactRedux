@@ -9,10 +9,14 @@ class ModifyBook extends Component {
         const bookId = this.props.book.bookId;
         const title = this.getTitle.value;
         const content = this.getContent.value;
+        const releaseDate = this.props.book.releaseDate;
+        const authorId = this.props.book.authorId;
         const data = {
           bookId,
           title,
-          content
+          content,
+          releaseDate,
+          authorId
         }
     this.props.dispatch(bookActions.update(data))
     }
@@ -23,7 +27,7 @@ class ModifyBook extends Component {
         <form>
           <input required type="text" ref={(input) => this.getTitle = input}
           defaultValue={this.props.book.title} placeholder="Enter Post Title" /><br /><br />
-          <textarea className="blockfloating" required rows="5" ref={(input) => this.getContent = input}
+           <textarea className="blockfloating" required rows="5" ref={(input) => this.getContent = input}
           defaultValue={this.props.book.content} cols="28" placeholder="Enter Post" /><br /><br />
           <button>Update</button>
         </form>

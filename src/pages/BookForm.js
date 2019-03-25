@@ -12,8 +12,7 @@ class BookForm extends Component {
         const {dispatch} = this.props;
         const data = {
             title,
-            content,
-            modify: false
+            content
         }
 
         dispatch(bookActions.create(data));

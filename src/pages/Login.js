@@ -9,7 +9,7 @@ class LoginBox extends Component {
       super(props);
       this.state = {
         Email : '',
-        Pass : ''
+        Password : ''
       };
 
       this.submitLogin = this.submitLogin.bind(this);
@@ -18,12 +18,12 @@ class LoginBox extends Component {
 
     submitLogin = (e) => {
         e.preventDefault();
-        const { Email, Pass } = this.state;
+        const { Email, Password } = this.state;
         const { dispatch } = this.props;
         
-        if(Email && Pass){
+        if(Email && Password){
             
-            dispatch(userAction.login(Email, Pass));
+            dispatch(userAction.login(Email, Password));
            
         }
     }
@@ -58,7 +58,7 @@ class LoginBox extends Component {
               <input
                 onChange={this.handleUserInput}
                 type="password"
-                name="Pass"
+                name="Password"
                 className="login-input"
                 placeholder="Password"/>
             </div>
