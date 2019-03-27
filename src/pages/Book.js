@@ -12,14 +12,14 @@ class Book extends Component {
   }
   render() {
   return (
-    <div>
+    <div className="form-style-6">
     <form>
       <label>{this.props.book.releaseDate}</label>
       <h2>{this.props.book.title}</h2>
-      <p>{this.props.book.content}</p> <br/>
+      <p className="post_messagemy">{this.props.book.content}</p> <br/>
       <div>
-      <button onClick={() => this.handleEditClick(this.props.book.bookId)}>Edit</button>
-      <button onClick={() => this.handleDeleteClick(this.props.book.bookId)}>Delete</button>
+      <button className="btn" onClick={() => this.handleEditClick(this.props.book.bookId)}>Edit</button>
+      <button className="btn" onClick={() => this.handleDeleteClick(this.props.book.bookId)}>Delete</button>
       </div>
     </form>
     </div>

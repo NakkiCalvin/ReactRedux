@@ -12,7 +12,7 @@ class BookList extends Component {
 
     render() {
     return(
-    <div>
+    <div className="form-style-6">
     <h1>Your Books</h1>
     {this.props.bookListState.map((book, index) => 
     <div key={index} className='heading1'>

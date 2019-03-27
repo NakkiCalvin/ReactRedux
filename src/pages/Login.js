@@ -14,6 +14,7 @@ class LoginBox extends Component {
 
       this.submitLogin = this.submitLogin.bind(this);
       this.handleUserInput = this.handleUserInput.bind(this);
+    
     }
 
     submitLogin = (e) => {

@@ -29,7 +29,7 @@ class ModifyBook extends Component {
           defaultValue={this.props.book.title} placeholder="Enter Post Title" /><br /><br />
            <textarea className="blockfloating" required rows="5" ref={(input) => this.getContent = input}
           defaultValue={this.props.book.content} cols="28" placeholder="Enter Post" /><br /><br />
-          <button>Update</button>
+          <button className="btn">Update</button>
         </form>
       </div>
       );

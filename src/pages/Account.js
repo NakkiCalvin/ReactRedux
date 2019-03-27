@@ -23,13 +23,15 @@ class AccountPage extends Component {
     render() {
     const Authentication = () => {
         return(
-            <li><NavLink to="/" onClick={this.onLogoutClick}>Logout</NavLink></li>
+            <div className="forNav">
+            <NavLink to="/" onClick={this.onLogoutClick}>Logout</NavLink>
+            </div>
         )
     }
 
     return(
         <div>
-            <h1>{this.props.userPageState.user.userEmail}</h1>
+            <h1 className="forLabel">{this.props.userPageState.user.userEmail}</h1>
             <Authentication/>
             <BookForm />
             <BookList/>

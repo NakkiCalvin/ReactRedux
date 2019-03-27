@@ -24,11 +24,11 @@ class BookForm extends Component {
   render() {
     return(
         
-        <div>
+        <div className="form-style-6">
         <form onSubmit={this.handleSubmit}>
                 <input required type="text" ref={(input) => {this.bookTitle = input}} />
                 <textarea className="blockfloating" required rows="5" type="text" ref={(input) => {this.bookContent = input}} cols="28" />
-                <button> Create book </button>
+                <button className="btn"> Create book </button>
         </form>
          
          </div>
