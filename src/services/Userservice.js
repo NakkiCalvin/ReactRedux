@@ -1,4 +1,4 @@
-const host = 'https://localhost:44326';
+const host = 'https://localhost:3000';
 
 export const userService = {
       register,

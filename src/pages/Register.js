@@ -37,10 +37,10 @@ class RegisterBox extends Component {
             } 
     }
 
-   
   
     render() {
       return (
+        
         <form method="POST">
         <div className="inner-container">
           <div className="header">

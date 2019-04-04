@@ -33,6 +33,7 @@ function register(user){
             .then(
                 user => {
                     dispatch(success(user));
+                    alert("Successfully Registered");
                 },
                 error => {
                     dispatch(failure(error));

@@ -1,6 +1,6 @@
 import {authorizeHeader} from '../Manager/headerAuthorize';
 import {bookConstants} from '../constants/bookConst';
-const host = 'https://localhost:44326';
+const host = 'https://localhost:3000';
 
 export const bookService = {
     create,
